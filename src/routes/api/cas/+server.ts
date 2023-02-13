@@ -1,4 +1,5 @@
 import { loadPyodide } from 'pyodide';
+import "https://cdn.jsdelivr.net/pyodide/v0.22.1/full/pyodide.js";
 import { json } from '@sveltejs/kit';
 
 const pyodide = await loadPyodide();
