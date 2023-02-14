@@ -1,7 +1,7 @@
 import { loadPyodide } from 'pyodide';
 import { json } from '@sveltejs/kit';
 
-const pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.22.1/full/' });
+const pyodide = await loadPyodide();
 await pyodide.loadPackage('sympy');
 
 export const POST = (async ({ request }) => {

@@ -23,6 +23,7 @@
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"pyodide": "^0.22.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"tailwindcss": "^3.2.4",
@@ -30,16 +31,5 @@
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0"
 	},
-	"type": "module",
-	"dependencies": {
-		"@supabase/auth-helpers-sveltekit": "^0.8.6",
-		"@supabase/supabase-js": "^2.4.0",
-		"@tiptap/core": "^2.0.0-beta.209",
-		"@tiptap/starter-kit": "^2.0.0-beta.209",
-		"@xstate/svelte": "^2.0.1",
-		"broadcast-channel": "^4.20.2",
-		"pyodide": "^0.22.1",
-		"remeda": "^1.6.0",
-		"xstate": "^4.35.2"
-	}
+	"type": "module"
 }
