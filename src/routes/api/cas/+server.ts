@@ -1,10 +1,11 @@
-import { loadPyodide } from 'pyodide';
 import { json } from '@sveltejs/kit';
+import { loadPyodide } from 'pyodide';
 
-const pyodide = await loadPyodide({ indexURL: './node_modules/pyodide'});
+const pyodide = await loadPyodide({indexURL:'/workspaces/calcsvelte/node_modules/pyodide/'});
 await pyodide.loadPackage('sympy');
 
 export const POST = (async ({ request }) => {
+
 	const { code, type } = await request.json();
 	let result;
 	switch (type) {
