@@ -1,38 +1,22 @@
 <script lang="ts">
-	let code = '';
-	let ergebnis = '';
-	const getNullstellen = async () => {
-		const response = await fetch('/api/cas', {
-			method: 'POST',
-			body: JSON.stringify({ code,type: 'nullstellen' }),
-			headers: {
-				'content-type': 'application/json'
-			}
-		});
+	import { onMount } from 'svelte';
+	import Worker from '$lib/pyodide-worker.mjs?worker';
+	import { runPyodide } from '$lib/toWorker';
+	let worker: Worker | undefined;
+	let value: string;
+	let result: any;
 
-		let total = await response.json();
-		ergebnis = await total.slice(1).slice(0, -1).split(',');
-	};
-	const getExtrema = async () => {
-		const response = await fetch('/api/cas', {
-			method: 'POST',
-			body: JSON.stringify({ code, type: 'extrema' }),
-			headers: {
-				'content-type': 'application/json'
-			}
-		});
+	onMount(async () => {
+		worker = new Worker();
+	});
 
-		let total = await response.json();
-		console.log(total)
-
+	const handleClick = async () => {
+		result = await runPyodide(value, worker!);
 	};
 </script>
 
-<input type="text" bind:value={code} />
-<button on:click={getNullstellen}>Nullstellen</button>
-<button on:click={getExtrema}>Extremstellen</button>
-<div>
-	{#each ergebnis as item, index}
-		<div>N{index}({item}|0)</div>
-	{/each}
+<div class="p-20 border border-slate-800 m-auto max-w-md">
+	<input type="text" bind:value class="bg-transparent border border-purple-700" />
+	<button on:click={handleClick} class=" bg-purple-700">Extremstellen</button>
+	<div>{result}</div>
 </div>
